@@ -188,12 +188,13 @@ function getAltText(poem, rightVersion) {
 		if (result[i].textContent !== undefined) {
 			
 			if (result[i].getElementsByTagName("tei-hi").length > 0) {
-				let italicized = result[i].querySelector("tei-hi").textContent;
-				result[i] = result[i].textContent.replace(italicized, "<i>" + italicized + "</i>").replace(/\s\s+/g, " ").trim();
+				let toItalicize = result[i].getElementsByTagName("tei-hi");
+				
+				for (let j = 0; j < toItalicize.length; j++)
+					toItalicize[j].textContent = "<i>" + toItalicize[j].textContent + "</i>"
 			}
 			
-			else
-				result[i] = result[i].textContent.replace(/\s\s+/g, " ").trim();
+			result[i] = result[i].textContent.replace(/\s\s+/g, " ").trim();
 		}
 	}
 	
