@@ -1,17 +1,16 @@
 let input = document.querySelector("input");
-let fileName;
+let fileURL;
 
 input.onchange = e => {
-	let file = e.target.files[0];
-	let filePath = document.getElementById("upload").value;
 	
-	if (filePath) {
-		fileName = getFileName(filePath);
-		let versionSelect = document.querySelector('[class="version-select"]');
-		
-		if (versionSelect.getAttribute("style") == "display: none;")
-			versionSelect.setAttribute("style", "");
-	}
+	if (fileURL !== null)
+		URL.revokeObjectURL(fileURL);
+	
+	fileURL = window.URL.createObjectURL(e.target.files[0]);
+	let versionSelect = document.querySelector('[class="version-select"]');
+	
+	if (versionSelect.getAttribute("style") == "display: none;")
+		versionSelect.setAttribute("style", "");
 }
 
 function rebuild() {
@@ -19,7 +18,7 @@ function rebuild() {
 	
 	if (rightVersion !== "default") {
 		destroyPoems();
-		buildPage(rightVersion, fileName);
+		buildPage(rightVersion, fileURL);
 	}
 }
 
@@ -30,9 +29,9 @@ function destroyPoems() {
 		span[i].remove();
 }
 
-function buildPage(rightVersion, fileName) {
+function buildPage(rightVersion, fileURL) {
 	let c = new CETEI();
-	c.getHTML5(fileName, function(data) {
+	c.getHTML5(fileURL, function(data) {
 		let poemNums = [];
 		
 		for (let i = 0; i < 71; i++)
