@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Poem Reader</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="CETEI.js"></script>
+    </head>
+	<body>
+		<label for="file">Select an input file (XML):</label>
+		<input type="file" id="upload" accept="text/xml">
+		<div class="version-select", style="display: none;">
+			<label for="dates">Choose a date:</label>
+			<select name="dates" id="dates" onchange="rebuild()" autocomplete="off">
+				<option value="default"></option>
+				<option value="1653">1653</option>
+				<option value="1664">1664</option>
+				<option value="1668">1668</option>
+			</select>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+* {
+	font-family: 'Georgia', serif;
+}
+
+label {
+    display: block;
+    font: 1rem 'Georgia', serif;
+}
+
+label {
+    margin: .4rem 0;
+}
+
+span:not(.scriptable) {
+	display: block;
+}
